@@ -25,7 +25,7 @@ import os, shutil, subprocess, time
 # 10000 lines
 FILE_SIZE_THRESHOLD = 10000
 MAX_NB_PROCESS = cpu_count()*2
-MIN_NB_PROCESS = 4
+MIN_NB_PROCESS = 2
 
 def nb_processes(nb_file_lines):
   """
@@ -36,8 +36,10 @@ def nb_processes(nb_file_lines):
   :return: the number of processes to run to process the file
   :rtype: Integer
   """
-  if nb_file_lines <= FILE_SIZE_THRESHOLD:
+  if nb_file_lines > MIN_NB_PROCESS*2 and nb_file_lines <= FILE_SIZE_THRESHOLD:
     return MIN_NB_PROCESS
+  elif nb_file_lines <= MIN_NB_PROCESS*2:
+    return 1
   return MAX_NB_PROCESS
 
 def unitary_conversion(infile, start, stop, subOutFile, pb_pos=0):
@@ -155,7 +157,7 @@ def whole_convert(infile, outfile):
     merge_results(list_out_files, outfile) #,pb_pos=len(list_processes)+1)
     #3- closing the geojson FeatureCollection property
     with open(outfile, 'a') as dst:
-      dst.write('\n]\n}')
+      dst.write('\n]\n}\n')
     dst.close()
     #4- deleting the sub files
     for f in list_out_files:
