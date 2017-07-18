@@ -154,7 +154,7 @@ def whole_convert(infile, outfile):
       dst.write('{ "type": "FeatureCollection",\n"features": [\n')
     dst.close()
     # 2- the subparts of the converted source file
-    merge_results(list_out_files, outfile) #,pb_pos=len(list_processes)+1)
+    merge_results(list_out_files, outfile) 
     #3- closing the geojson FeatureCollection property
     with open(outfile, 'a') as dst:
       dst.write('\n]\n}\n')

@@ -31,7 +31,7 @@ Options:
 # Context
 You might want to transform the data downloaded from OpenCellID in a csv format to GeoJSON to show on a map (geojson.io, for example). This is what I wanted, and made this modest utility that serves the purpose. If it's not the case for you, please put an issue, I will try to fix it if possible.
 
-This utility takes advantage of the multiprocessing library in python to dispatch the conversion job among the available cores. If the number of threads is not enough for you, feel free to tweak the `MAX_NB_PROCESS` constant. This comes especially handy when the dataset is huge. The utility can still be used for smaller datasets though.
+This utility takes advantage of the multiprocessing library in python to dispatch the conversion job among the available cores. If the number of threads is not enough for you, feel free to tweak the `MAX_NB_PROCESS` constant. This comes especially handy when the dataset is huge. For instance, it took about 20 minutes to process the full dataset from OpenCellID (about 3GB) with 16 threads on an x86_64 Intel(R) Core(TM) i7-4910MQ CPU @ 2.90GHz (8 cores) machine. The utility can still be used for smaller datasets though. Feel free to use more threads if you want.
 
 # License
 The MIT License (MIT)
